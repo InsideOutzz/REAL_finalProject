@@ -6,7 +6,7 @@ function isLoggedIn() {
 }
 
 function isAdmin() {
-    return isLoggedIn() && $_SESSION['role'] === 'admin';
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 }
 
 function protect() {
@@ -22,14 +22,6 @@ function adminOnly() {
         exit;
     }
 }
-
-
-
-
-
-
-
-
 
 
 
