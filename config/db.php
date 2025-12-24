@@ -1,24 +1,19 @@
 <?php
-session_start();
+$host = "localhost";
+$dbname = "real_finalproject";
+$user = "root";
+$password = "";
 
-function isLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-function isAdmin() {
-    return isLoggedIn() && $_SESSION['role'] === 'admin';
-}
-
-function protect() {
-    if (!isLoggedIn()) {
-        header("Location: login.php");
-        exit;
-    }
-}
-
-function adminOnly() {
-    if (!isAdmin()) {
-        header("Location: dashboard.php");
-        exit;
-    }
+try {
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        $user,
+        $password,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
+    );
+} catch (Exception $e) {
+    die("Database connection failed.");
 }

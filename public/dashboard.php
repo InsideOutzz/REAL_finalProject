@@ -1,16 +1,12 @@
 <?php
 require "../config/db.php";
 require "../functions/helpers.php";
+require "../config/session.php";
 
-require "config/session.php";
 protect();
 
 $stmt = $pdo->query("SELECT * FROM students");
-$students = $stmt->fetchAll(PDO::FETCH_ASSOC);
-<?php if(isAdmin()): ?>
-    <a href="add.php" class="btn">➕ Add Student</a>
-<?php endif; ?>
-
+$students = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +16,14 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<h1>📊 Student Dashboard</h1>
-<a href="create.php">➕ Add Student</a>
+<p>Welcome, <?= htmlspecialchars($_SESSION['username']) ?> 👋</p>
+<a href="logout.php" class="btn">Logout</a>
+
+<h1>Student Dashboard</h1>
+
+<?php if (isAdmin()): ?>
+    <a href="create.php" class="btn">Add Student</a>
+<?php endif; ?>
 
 <table>
 <tr>
@@ -32,32 +34,22 @@ $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <th>Actions</th>
 </tr>
 
-<?php foreach ($students as $student): ?>
+<?php foreach ($students as $s): ?>
 <tr>
-    <td><?= $student['name'] ?></td>
-    <td><?= $student['age'] ?></td>
-    <td><?= $student['score'] ?></td>
-    <td><?= grade($student['score']) ?></td>
+    <td><?= htmlspecialchars($s['name']) ?></td>
+    <td><?= $s['age'] ?></td>
+    <td><?= $s['score'] ?></td>
+    <td><?= grade($s['score']) ?></td>
     <td>
-        <a href="edit.php?id=<?= $student['id'] ?>">✏️</a>
-        <a href="delete.php?id=<?= $student['id'] ?>">🗑️</a>
+        <?php if (isAdmin()): ?>
+            <a href="edit.php?id=<?= $s['id'] ?>">✏️</a>
+            <a href="delete.php?id=<?= $s['id'] ?>" onclick="return confirm('Delete?')">🗑️</a>
+        <?php else: ?>
+            View only
+        <?php endif; ?>
     </td>
-
-    <td>
-    <?php if(isAdmin()): ?>
-        <a href="edit.php?id=<?= $student['id'] ?>">✏️</a>
-        <a href="delete.php?id=<?= $student['id'] ?>" onclick="return confirm('Delete?')">🗑️</a>
-    <?php else: ?>
-        🔍 View only
-    <?php endif; ?>
-</td>
 </tr>
-
-<p>Welcome, <?= $_SESSION['username'] ?> 👋</p>
-<a href="logout.php" class="btn">🚪 Logout</a>
-
 <?php endforeach; ?>
-
 </table>
 
 </body>

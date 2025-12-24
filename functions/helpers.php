@@ -1,10 +1,9 @@
 <?php
-function sanitize($data) {
-    return htmlspecialchars(trim($data));
-}
 
 function grade($score) {
-    if ($score >= 80) return "A";
-    elseif ($score >= 60) return "B";
-    else return "C";
+    if ($score >= 90) return "A";
+    if ($score >= 80) return "B";
+    if ($score >= 70) return "C";
+    if ($score >= 60) return "D";
+    return "F";
 }
