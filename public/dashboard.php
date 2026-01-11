@@ -8,7 +8,6 @@ protect();
 $stmt = $pdo->query("SELECT * FROM students");
 $students = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

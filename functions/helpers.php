@@ -1,5 +1,4 @@
 <?php
-
 function grade($score) {
     if ($score >= 90) return "A";
     if ($score >= 80) return "B";
@@ -7,3 +6,4 @@ function grade($score) {
     if ($score >= 60) return "D";
     return "F";
 }
+?>

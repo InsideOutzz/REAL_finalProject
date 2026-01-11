@@ -17,3 +17,4 @@ try {
 } catch (Exception $e) {
     die("Database connection failed.");
 }
+?>

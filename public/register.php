@@ -19,12 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
 
 <form method="POST">
     <h2>Register</h2>
 
-    <?php if($error): ?>
-        <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+    <?php if ($error): ?>
+    <p style="color:red;"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
     <input type="text" name="username" placeholder="Username" required>
@@ -34,3 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <button>Sign Up</button>
     <p><a href="login.php">Already have an account?</a></p>
 </form>
+
+</body>
+</html>

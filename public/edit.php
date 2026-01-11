@@ -1,6 +1,7 @@
 <?php
 require "../config/db.php";
 require "../config/session.php";
+
 adminOnly();
 
 $id = intval($_GET['id']);
@@ -14,8 +15,8 @@ if (!$student) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = trim($_POST['name']);
-    $age = intval($_POST['age']);
+    $name  = trim($_POST['name']);
+    $age   = intval($_POST['age']);
     $score = intval($_POST['score']);
 
     $update = $pdo->prepare("UPDATE students SET name=?, age=?, score=? WHERE id=?");
@@ -25,11 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
