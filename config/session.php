@@ -24,11 +24,3 @@ function adminOnly() {
 }
 ?>
 
-
-
-
-
-
-
-
-
