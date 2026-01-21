@@ -15,8 +15,8 @@ $students = $stmt->fetchAll();
 </head>
 <body>
 
-<p>Welcome, <?= htmlspecialchars($_SESSION['username']) ?> 👋</p>
-<a href="logout.php" class="btn">Logout</a>
+<p>Welcome, <?= htmlspecialchars($_SESSION['username']) ?></p>
+<a href="../auth/logout.php" class="btn">Logout</a>
 
 <h1>Student Dashboard</h1>
 
