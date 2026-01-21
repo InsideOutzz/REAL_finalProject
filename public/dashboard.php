@@ -1,7 +1,7 @@
 <?php
 require "../config/db.php";
-require "../functions/helpers.php";
 require "../config/session.php";
+require "../functions/helpers.php";
 
 protect();
 
@@ -52,4 +52,3 @@ $students = $stmt->fetchAll();
 </table>
 
 </body>
-</html>

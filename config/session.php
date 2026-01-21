@@ -11,7 +11,7 @@ function isAdmin() {
 
 function protect() {
     if (!isLoggedIn()) {
-        header("Location: login.php");
+        header("Location: ../auth/login.php");
         exit;
     }
 }
@@ -23,4 +23,3 @@ function adminOnly() {
     }
 }
 ?>
-

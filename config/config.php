@@ -1,9 +1,8 @@
 <?php
-
 $host = "localhost";
-$dbname = "real_finalproject"; // <-- your actual database name
-$user = "root";                // <-- NOT empty
-$pass = "";                    // <-- empty by default in XAMPP
+$dbname = "real_finalproject";
+$user = "root";
+$pass = "";
 
 try {
     $pdo = new PDO(
@@ -15,3 +14,4 @@ try {
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
+?>
